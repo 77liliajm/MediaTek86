@@ -1,22 +1,40 @@
 ﻿namespace MediaTek86.modele
 {
     /// <summary>
-    /// Classe métier représentant un utilisateur (login + mot de passe)
+    /// Représente un utilisateur avec login et mot de passe.
     /// </summary>
     public class Utilisateur
     {
-        public string login { get; set; }
-        public string pwd { get; set; }
+        /// <summary>
+        /// Obtient l'identifiant du personnel associé à l'utilisateur.
+        /// </summary>
+        public int IdPersonnel { get; }
 
         /// <summary>
-        /// Constructeur de la classe Utilisateur
+        /// Obtient le login de l'utilisateur.
         /// </summary>
-        /// <param name="login">Identifiant de l'utilisateur</param>
-        /// <param name="pwd">Mot de passe de l'utilisateur</param>
-        public Utilisateur(string login, string pwd)
+        public string Login { get; }
+
+        /// <summary>
+        /// Obtient le mot de passe de l'utilisateur.
+        /// </summary>
+        public string Password { get; }
+
+        /// <summary>
+        /// Initialise une nouvelle instance de la classe <see cref="Utilisateur"/>.
+        /// </summary>
+        /// <param name="idPersonnel">Identifiant du personnel.</param>
+        /// <param name="login">Login de l'utilisateur.</param>
+        /// <param name="password">Mot de passe de l'utilisateur.</param>
+        public Utilisateur(int idPersonnel, string login, string password)
         {
-            this.login = login;
-            this.pwd = pwd;
+            IdPersonnel = idPersonnel;
+            Login = login;
+            Password = password;
         }
     }
 }
+
+
+
+
