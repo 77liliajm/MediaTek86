@@ -29,7 +29,7 @@ namespace MediaTek86.dal
                     row["prenom"].ToString(),
                     row["tel"].ToString(),
                     row["mail"].ToString(),
-                    row["idservice"].ToString()
+                    Convert.ToInt32(row["idservice"])  
                 ));
             }
 

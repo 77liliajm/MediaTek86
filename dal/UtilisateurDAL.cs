@@ -1,49 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using MediaTek86.modele;
-using MediaTek86.bddmanager;
+﻿using MediaTek86.modele;
 using MySql.Data.MySqlClient;
 
 namespace MediaTek86.dal
 {
-    public class UtilisateurDAL
+    /// <summary>
+    /// Fournit des méthodes d'accès aux données de l'utilisateur.
+    /// </summary>
+    public static class UtilisateurDAL
     {
         private static string connectionString = "server=localhost;database=mediatek86;uid=root;pwd=Okboomer93100!!;";
 
         /// <summary>
-        /// Récupère un utilisateur à partir du login et du mot de passe en clair.
-        /// Le mot de passe est hashé en SHA-256 avant la requête.
+        /// Récupère un utilisateur depuis la base avec login et mot de passe hashé.
         /// </summary>
-        public static Utilisateur GetUtilisateur(string login, string password)
+        /// <param name="login">Le login de l'utilisateur</param>
+        /// <param name="passwordHash">Le mot de passe hashé</param>
+        /// <returns>Un objet Utilisateur ou null si non trouvé</returns>
+        public static Utilisateur GetUtilisateur(string login, string passwordHash)
         {
-            string pwdHash = SecurityHelper.ComputeSha256Hash(password);
-
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT login FROM responsable WHERE login = @login AND pwd = @pwdHash LIMIT 1";
+                string query = "SELECT login, pwd FROM responsable WHERE login = @login AND pwd = @pwdHash LIMIT 1";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@login", login);
-                    cmd.Parameters.AddWithValue("@pwdHash", pwdHash);
+                    cmd.Parameters.AddWithValue("@pwdHash", passwordHash);
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            // Crée et retourne un utilisateur avec le login récupéré
-                            return new Utilisateur(reader.GetString("login"));
+                            string userLogin = reader.GetString("login");
+                            string pwd = reader.GetString("pwd");
+
+                            return new Utilisateur(userLogin, pwd); // adapte selon le constructeur disponible
+                        }
+                        else
+                        {
+                            return null;
                         }
                     }
                 }
             }
-
-            // Utilisateur non trouvé
-            return null;
         }
     }
 }
+
+
 
 
 
