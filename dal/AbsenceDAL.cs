@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MediaTek86.modele;
-using mediatek86.bddmanager;
+using MediaTek86.bddmanager;
 
 namespace MediaTek86.dal
 {
@@ -14,7 +14,7 @@ namespace MediaTek86.dal
         /// Récupère la liste des absences pour un personnel donné.
         /// </summary>
         /// <param name="idpersonnel">L'identifiant du personnel.</param>
-        /// <returns>Une liste d'objets <see cref="Absence"/> correspondant aux absences du personnel.</returns>
+        /// <returns>Liste des absences liées à ce personnel.</returns>
         public static List<Absence> GetAbsencesByPersonnel(int idpersonnel)
         {
             List<Absence> absences = new List<Absence>();
@@ -25,16 +25,19 @@ namespace MediaTek86.dal
 
             foreach (var row in rows)
             {
-                int idmotif = Convert.ToInt32(row["idmotif"]);
-                DateTime datedebut = Convert.ToDateTime(row["datedebut"]);
-                DateTime datefin = Convert.ToDateTime(row["datefin"]);
-
-                absences.Add(new Absence(idpersonnel, idmotif, datedebut, datefin));
+                absences.Add(new Absence(
+                    idpersonnel,
+                    Convert.ToInt32(row["idmotif"]),
+                    Convert.ToDateTime(row["datedebut"]),
+                    Convert.ToDateTime(row["datefin"])
+                ));
             }
 
             return absences;
         }
     }
 }
+
+
 
 

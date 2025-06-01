@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 
-namespace mediatek86.bddmanager
+namespace MediaTek86.bddmanager
 {
     /// <summary>
     /// Classe statique de gestion des connexions et requêtes SQL avec MySQL.

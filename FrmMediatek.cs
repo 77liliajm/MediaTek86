@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MediaTek86.modele; // Pour que "Utilisateur" soit reconnu
 
 namespace MediaTek86
 {
@@ -15,13 +9,19 @@ namespace MediaTek86
     /// </summary>
     public partial class FrmMediatek : Form
     {
+        private Utilisateur utilisateur;
+
         /// <summary>
-        /// Initialise une nouvelle instance de la classe <see cref="FrmMediatek"/>.
+        /// Initialise une nouvelle instance de la classe <see cref="FrmMediatek"/> avec un utilisateur connecté.
         /// </summary>
-        public FrmMediatek()
+        /// <param name="utilisateur">L'utilisateur connecté.</param>
+        public FrmMediatek(Utilisateur utilisateur)
         {
             InitializeComponent();
+            this.utilisateur = utilisateur;
         }
     }
 }
+
+
 
