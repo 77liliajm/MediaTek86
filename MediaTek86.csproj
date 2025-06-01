@@ -134,6 +134,7 @@
     <Compile Include="modele\Utilisateur.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\PersonnelRepository.cs" />
     <EmbeddedResource Include="FrmAbsences.resx">
       <DependentUpon>FrmAbsences.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,5 +177,5 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <LangVersion>9.0</LangVersion>
-</PropertyGroup>
+  </PropertyGroup>
 </Project>

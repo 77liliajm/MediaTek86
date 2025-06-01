@@ -35,7 +35,7 @@ namespace MediaTek86.modele
         /// <summary>
         /// Obtient l'identifiant du service auquel le personnel est rattaché.
         /// </summary>
-        public string IdService { get; }
+        public int IdService { get; }
 
         /// <summary>
         /// Initialise une nouvelle instance de la classe <see cref="Personnel"/>.
@@ -46,7 +46,7 @@ namespace MediaTek86.modele
         /// <param name="tel">Le numéro de téléphone.</param>
         /// <param name="mail">L'adresse email.</param>
         /// <param name="idService">L'identifiant du service.</param>
-        public Personnel(int idPersonnel, string nom, string prenom, string tel, string mail, string idService)
+        public Personnel(int idPersonnel, string nom, string prenom, string tel, string mail, int idService)
         {
             IdPersonnel = idPersonnel;
             Nom = nom;
@@ -57,5 +57,6 @@ namespace MediaTek86.modele
         }
     }
 }
+
 
 
